@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>소고기 미역국 | 나의 레시피 핸드북</title>
+<title>소고기 미역국</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -79,12 +79,7 @@ main {
   padding: 30px 5% 40px;
 }
 
-/* 레시피 헤더 */
-.recipe-header {
-  margin-bottom: 24px;
-}
-
-.category-badge {
+.eyebrow {
   font-size: 14px;
   color: #2568a0;
   font-weight: 600;
@@ -99,22 +94,21 @@ h1 {
 }
 @media(max-width:700px){ h1 { font-size: 34px; letter-spacing: -1px; } }
 
-.intro-text {
+.intro {
   color: #536375;
   font-size: 16px;
   line-height: 1.7;
   max-width: 780px;
 }
 
-/* 메타 칩 */
-.meta-grid {
+.meta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 24px 0 28px;
+  margin: 20px 0 26px;
 }
 
-.meta-chip {
+.meta div {
   background: #e7eef7;
   border-radius: 9px;
   padding: 10px 22px;
@@ -122,7 +116,7 @@ h1 {
   color: #536375;
 }
 
-.meta-chip .val {
+.meta b {
   display: block;
   font-size: 17px;
   font-weight: 700;
@@ -130,37 +124,23 @@ h1 {
   margin-top: 2px;
 }
 
-/* 인분수 선택 바 (위치 완전 고정) */
+/* 인분수 선택 바 */
 .portion-card {
   background: #fff;
   border: 1px solid #dce5ee;
   border-radius: 12px;
-  padding: 18px 24px;
-  margin: 24px 0;
+  padding: 16px 22px;
+  margin: 20px 0 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
 }
 
-.portion-info {
-  flex: 1;
-  min-width: 0;
-}
-
 .portion-info h3 {
   font-size: 16px;
   font-weight: 700;
   color: #142a44;
-  margin-bottom: 3px;
-}
-
-.portion-info p {
-  font-size: 14px;
-  color: #65768a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .portion-toggle {
@@ -171,7 +151,7 @@ h1 {
 
 .portion-toggle button {
   min-width: 80px;
-  padding: 9px 18px;
+  padding: 8px 18px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
@@ -195,11 +175,8 @@ h1 {
   .portion-card {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px 18px;
-    gap: 12px;
-  }
-  .portion-info p {
-    white-space: normal;
+    padding: 14px 16px;
+    gap: 10px;
   }
   .portion-toggle {
     display: grid;
@@ -209,102 +186,91 @@ h1 {
   }
   .portion-toggle button {
     width: 100%;
-    padding: 10px 0;
+    padding: 9px 0;
   }
 }
 
-/* 재료 섹션 */
-.card-section {
+/* 재료 테이블 */
+.ingredients {
   background: #fff;
-  border: 1px solid #dce5ee;
+  padding: 22px 27px 25px;
   border-radius: 14px;
-  padding: 24px 28px;
   margin: 28px 0;
+  border: 1px solid #dce5ee;
 }
 
-.section-title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e1e7ed;
-  padding-bottom: 12px;
-}
-
-.section-title {
+h2 {
   font-size: 22px;
   color: #142a44;
-  letter-spacing: -0.5px;
+  margin: 0 0 16px;
 }
 
-.ingredient-group {
-  margin: 18px 0 0;
+.ingredient-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: left;
 }
 
-.group-header {
-  display: block;
-  font-size: 15px;
-  font-weight: 600;
-  color: #2568a0;
-  margin-bottom: 8px;
-}
-
-.ingredient-items {
-  list-style: none;
-  margin: 0 0 14px;
-  padding: 0;
-}
-
-.ingredient-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 11px 0;
+.ingredient-table th, .ingredient-table td {
+  padding: 11px 12px;
   border-bottom: 1px solid #e1e7ed;
+  vertical-align: middle;
 }
 
-.ingredient-label {
+.ingredient-table thead th {
+  font-size: 13px;
+  color: #65768a;
+  font-weight: 500;
+  padding-top: 0;
+}
+
+.ingredient-table tbody + tbody {
+  border-top: 2px solid #cad5e1;
+}
+
+.ingredient-table th[scope=rowgroup] {
+  width: 18%;
+  color: #2568a0;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.ingredient-check {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
   cursor: pointer;
 }
 
-.ingredient-label input[type=checkbox] {
+.ingredient-check input[type=checkbox] {
   accent-color: #2568a0;
   width: 17px;
   height: 17px;
   cursor: pointer;
-  position: relative;
-  top: 2px;
 }
 
-.item-name {
-  font-size: 16px;
-  color: #142a44;
-}
-
-.item-qty {
-  font-size: 15px;
+.ingredient-table td.amount {
+  width: 32%;
   font-weight: 600;
   color: #142a44;
+  text-align: right;
   white-space: nowrap;
-  margin-left: 20px;
 }
 
-.ingredient-item:has(input:checked) {
-  opacity: 0.45;
+.ingredient-table tr:has(input:checked) td {
+  color: #8995a3;
   text-decoration: line-through;
 }
 
-/* 조리 순서 */
-.step-list {
+/* 조리 단계 */
+.steps {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.step-card {
+.step {
   display: grid;
   grid-template-columns: 38px 1fr;
   gap: 14px;
@@ -316,60 +282,40 @@ h1 {
 }
 
 @media(max-width:700px){
-  .step-card {
+  .step {
     grid-template-columns: 28px 1fr;
     gap: 10px;
     padding: 18px 16px;
   }
 }
 
-.step-badge {
+.num {
   font-size: 25px;
   font-weight: 800;
   color: #2568a0;
   line-height: 1.4;
 }
 
-.step-content h3 {
-  font-size: 20px;
+.step h3 {
+  font-size: 19px;
   color: #142a44;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.step-content p {
+.step p {
   font-size: 16px;
-  line-height: 1.9;
+  line-height: 1.85;
   color: #142a44;
-  margin: 7px 0;
-}
-
-.step-tip {
-  padding: 12px 16px;
-  background: #fff4dc;
-  border-left: 3px solid #92701b;
-  color: #694d12;
-  margin: 12px 0 6px;
-  border-radius: 0 6px 6px 0;
-  font-size: 14px;
-  line-height: 1.7;
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-}
-
-.step-tip-icon {
-  font-size: 15px;
-  flex-shrink: 0;
-  margin-top: 1px;
+  margin: 6px 0;
 }
 
 /* 인라인 타이머 */
 .inline-timer {
   background: #e7eef7;
   border: 1px solid #cad5e1;
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin: 14px 0 10px;
+  border-radius: 9px;
+  padding: 14px 18px;
+  margin: 12px 0 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -378,7 +324,7 @@ h1 {
 }
 
 .timer-display {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   color: #142a44;
   font-variant-numeric: tabular-nums;
@@ -391,7 +337,7 @@ h1 {
 }
 
 .timer-btn {
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 6px;
   background: #2568a0;
   color: #fff;
@@ -410,63 +356,23 @@ h1 {
 }
 .timer-btn.reset:hover { border-color: #2568a0; }
 
-/* 꿀팁 콜아웃 박스 (기존 .draft 스타일 매칭) */
-.callout-box {
-  padding: 18px 22px;
-  background: #fff4dc;
-  border-left: 4px solid #92701b;
-  color: #694d12;
-  margin: 24px 0;
-  border-radius: 0 10px 10px 0;
-}
-
-.callout-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #553e0d;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.callout-content {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #694d12;
-}
-
-.callout-content ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.callout-content li {
-  margin-bottom: 6px;
-}
-
-/* 하단 푸터 */
-footer {
+.footer {
   margin-top: 30px;
   border-top: 1px solid #d5dde6;
-  padding: 24px 5%;
+  padding: 20px 5%;
   font-size: 13px;
   color: #66788a;
 }
-footer a {
-  color: inherit;
-}
+.footer a { color: #2568a0; font-weight: 600; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
 <div class="shell">
-  <!-- 상단 네비게이션 -->
   <header class="top-nav">
     <div class="top-nav-inner">
-      <a class="back-link" href="index.html">
-        ← 핸드북 목록
-      </a>
+      <a class="back-link" href="index.html">← 목록</a>
       <button type="button" id="wakeLockBtn" class="wakelock-btn" onclick="toggleWakeLock()">
         <span id="wakeLockIcon">💡</span> <span id="wakeLockText">화면 켜짐 유지</span>
       </button>
@@ -474,305 +380,215 @@ footer a {
   </header>
 
   <main>
-    <!-- 레시피 헤더 -->
-    <header class="recipe-header">
-      <span class="category-badge">요리 / 국물요리</span>
-      <h1>진한 소고기 미역국</h1>
-      <p class="intro-text">한우 2등급 국거리의 진한 풍미를 살리고 24cm 멀티팬 규격에 최적화한 레시피. 넉넉하게 끓여두고 소분 냉동 보관하기 좋습니다.</p>
+    <article>
+      <span class="eyebrow">요리 / 국물요리</span>
+      <h1>소고기 미역국</h1>
+      <p class="intro">소고기 다시다링으로 깊은 감칠맛을 쉽게 내는 초간단 소고기 미역국 레시피입니다.</p>
 
-      <div class="meta-grid">
-        <div class="meta-chip">
-          <span class="label">조리 시간</span>
-          <span class="val">약 40분</span>
+      <div class="meta">
+        <div>소요 시간<b>약 35분</b></div>
+        <div>난이도<b>초급</b></div>
+        <div>핵심 재료<b>소고기 다시다링</b></div>
+      </div>
+
+      <!-- 인분수 선택 바 -->
+      <div class="portion-card">
+        <div class="portion-info">
+          <h3>분량 선택</h3>
         </div>
-        <div class="meta-chip">
-          <span class="label">난이도</span>
-          <span class="val">쉬움 (초급)</span>
-        </div>
-        <div class="meta-chip">
-          <span class="label">추천 냄비</span>
-          <span class="val">24cm 멀티팬</span>
-        </div>
-        <div class="meta-chip">
-          <span class="label">보관 방법</span>
-          <span class="val">냉동 1개월</span>
+        <div class="portion-toggle">
+          <button type="button" id="btnPortion2" onclick="setPortion(2)">2인분</button>
+          <button type="button" id="btnPortion4" class="active" onclick="setPortion(4)">4인분</button>
         </div>
       </div>
-    </header>
 
-    <!-- 분량 선택기 -->
-    <div class="portion-card">
-      <div class="portion-info">
-        <h3>분량 선택</h3>
-        <p id="portionDesc">4인분 (넉넉한 조리 & 소분 보관)</p>
-      </div>
-      <div class="portion-toggle">
-        <button type="button" id="btnPortion2" onclick="setPortion(2)">2인분</button>
-        <button type="button" id="btnPortion4" class="active" onclick="setPortion(4)">4인분</button>
-      </div>
-    </div>
+      <!-- 재료 -->
+      <section class="ingredients">
+        <h2>재료</h2>
+        <table class="ingredient-table">
+          <thead>
+            <tr>
+              <th scope="col">구분</th>
+              <th scope="col">재료</th>
+              <th scope="col" style="text-align:right;">분량</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="rowgroup" rowspan="2">주재료</th>
+              <td><label class="ingredient-check"><input type="checkbox"><span>소고기 국거리</span></label></td>
+              <td class="amount" data-qty-2="130g" data-qty-4="260g">260g</td>
+            </tr>
+            <tr>
+              <td><label class="ingredient-check"><input type="checkbox"><span>마른 미역</span></label></td>
+              <td class="amount" data-qty-2="10~12g (불리면 한 줌)" data-qty-4="20~25g (불리면 두 줌)">20~25g</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th scope="rowgroup" rowspan="2">육수</th>
+              <td><label class="ingredient-check"><input type="checkbox"><span>물</span></label></td>
+              <td class="amount" data-qty-2="750~800mL" data-qty-4="1.5L">1.5L</td>
+            </tr>
+            <tr>
+              <td><label class="ingredient-check"><input type="checkbox"><span>소고기 다시다링</span></label></td>
+              <td class="amount" data-qty-2="2개" data-qty-4="3~4개">3~4개</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th scope="rowgroup" rowspan="4">양념</th>
+              <td><label class="ingredient-check"><input type="checkbox"><span>참기름</span></label></td>
+              <td class="amount" data-qty-2="1큰술" data-qty-4="2큰술">2큰술</td>
+            </tr>
+            <tr>
+              <td><label class="ingredient-check"><input type="checkbox"><span>다진 마늘</span></label></td>
+              <td class="amount" data-qty-2="½큰술" data-qty-4="1큰술">1큰술</td>
+            </tr>
+            <tr>
+              <td><label class="ingredient-check"><input type="checkbox"><span>국간장</span></label></td>
+              <td class="amount" data-qty-2="1큰술" data-qty-4="1.5~2큰술">1.5~2큰술</td>
+            </tr>
+            <tr>
+              <td><label class="ingredient-check"><input type="checkbox"><span>소금 (선택)</span></label></td>
+              <td class="amount" data-qty-2="약간" data-qty-4="약간">간 보며 조절</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <!-- 재료 섹션 -->
-    <section class="card-section">
-      <div class="section-title-row">
-        <h2 class="section-title">🥗 필요 재료</h2>
-        <span style="font-size:12px; color:var(--text-light);">준비된 재료는 체크해 두세요</span>
-      </div>
-
-      <!-- 주재료 -->
-      <div class="ingredient-group">
-        <span class="group-header">주재료</span>
-        <ul class="ingredient-items">
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">소고기 국거리 (한우 2등급/양지)</span>
-            </label>
-            <span class="item-qty" data-qty-2="130g" data-qty-4="260g">260g</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">마른 미역</span>
-            </label>
-            <span class="item-qty" data-qty-2="10~12g (불리면 120g)" data-qty-4="20~25g (종이컵 1컵 / 불리면 250g)">20~25g (종이컵 1컵)</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">물 (또는 쌀뜨물)</span>
-            </label>
-            <span class="item-qty" data-qty-2="750~800mL" data-qty-4="1.5L (생수병 3병)">1.5L (생수병 3병)</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 양념 -->
-      <div class="ingredient-group">
-        <span class="group-header">양념 및 간</span>
-        <ul class="ingredient-items">
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">참기름</span>
-            </label>
-            <span class="item-qty" data-qty-2="1큰술" data-qty-4="2큰술">2큰술</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">국간장</span>
-            </label>
-            <span class="item-qty" data-qty-2="1큰술 (볶을 때 0.5, 끓일 때 0.5)" data-qty-4="2큰술 (볶을 때 1, 끓일 때 1)">2큰술</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">다진 마늘</span>
-            </label>
-            <span class="item-qty" data-qty-2="½큰술" data-qty-4="1큰술">1큰술</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">액젓 (참치액 또는 멸치액젓)</span>
-            </label>
-            <span class="item-qty" data-qty-2="½큰술" data-qty-4="1큰술 (감칠맛 비법)">1큰술</span>
-          </li>
-          <li class="ingredient-item">
-            <label class="ingredient-label">
-              <input type="checkbox">
-              <span class="item-name">굵은소금 / 꽃소금</span>
-            </label>
-            <span class="item-qty" data-qty-2="한 꼬집 (마지막 조절)" data-qty-4="약간 (마지막 간 조절)">약간</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 조리 순서 섹션 -->
-    <section class="card-section">
-      <div class="section-title-row">
-        <h2 class="section-title">🍳 만드는 순서</h2>
-        <span style="font-size:12px; color:var(--text-light);">완료된 단계는 체크하세요</span>
-      </div>
-
-      <ol class="step-list">
-        <!-- 1단계 -->
-        <li class="step-card" id="step1">
-          <div class="step-badge">1</div>
-          <div class="step-content">
-            <h3>재료 밑준비</h3>
-            <p><strong>미역 불리기:</strong> 마른 미역을 찬물에 담가 10~15분간 불립니다. 불린 미역은 찬물에 2~3회 조물조물 씻어 헹군 후, 물기를 꼭 짜서 3~4cm 길이로 썰어둡니다.</p>
-            <p><strong>소고기 핏물 제거:</strong> 국거리 고기는 물에 씻지 말고, 키친타월로 겉면의 핏물만 가볍게 톡톡 눌러 닦아냅니다.</p>
-            <div class="step-tip">
-              <span class="step-tip-icon">💡</span>
-              <span>한우 2등급 국거리는 마블링이 적고 육향이 진해 핏물만 잘 닦아도 누린내 없이 깔끔하게 끓여집니다.</span>
+      <!-- 만드는 순서 -->
+      <section>
+        <h2>만드는 순서</h2>
+        <ol class="steps">
+          <li class="step">
+            <span class="num" aria-hidden="true">1</span>
+            <div>
+              <h3>재료 밑준비</h3>
+              <p>마른 미역은 찬물에 10분간 불린 뒤 헹궈 물기를 꼭 짜고, 먹기 좋은 크기(3~4cm)로 자릅니다.</p>
+              <p>소고기는 키친타월로 가볍게 눌러 겉면 핏물만 닦아냅니다.</p>
             </div>
-          </div>
-        </li>
-
-        <!-- 2단계 -->
-        <li class="step-card" id="step2">
-          <div class="step-badge">2</div>
-          <div class="step-content">
-            <h3>고기와 미역 볶기 (촉촉한 육즙 & 진한 국물의 핵심)</h3>
-            <p>24cm 팬에 참기름 2큰술을 두르고 중불로 달군 뒤, 소고기를 넣고 볶습니다.</p>
-            <p><strong>고기 핏기만 살짝 가실 때(겉면 60~70%만 익었을 때)</strong> 국간장 1큰술을 둘러 밑간을 입히고, <strong>속이 아직 불그스름할 때 바로</strong> 물기 꼭 짠 미역과 다진 마늘을 넣습니다.</p>
-            <p>미역에서 나오는 은은한 수분이 고기가 타거나 퍽퍽해지는 것을 막아주며, 고기 기름과 참기름을 미역이 싹 흡수합니다. 미역이 부드러워지고 짙은 초록색이 될 때까지 2~3분간 달달 볶아줍니다.</p>
-            <div class="step-tip">
-              <span class="step-tip-icon">💡</span>
-              <span>한우 2등급 살코기는 완전히 다 익을 때까지 고기만 볶으면 육즙이 빠져 질겨집니다. 겉만 살짝 코팅하고 바로 미역을 넣어 미역 수분으로 촉촉하게 볶는 것이 핵심 비결입니다.</span>
+          </li>
+          <li class="step">
+            <span class="num" aria-hidden="true">2</span>
+            <div>
+              <h3>고기와 미역 볶기</h3>
+              <p>냄비에 참기름을 두르고 중불에서 소고기 겉면 핏기가 가실 정도로만 볶습니다.</p>
+              <p>고기 속이 아직 붉을 때 미역과 다진 마늘을 넣고, 미역에 고기 기름이 잘 배도록 2~3분간 함께 볶습니다.</p>
             </div>
-          </div>
-        </li>
-
-        <!-- 3단계 -->
-        <li class="step-card" id="step3">
-          <div class="step-badge">3</div>
-          <div class="step-content">
-            <h3>물 붓고 푹 끓이기</h3>
-            <p>물 1.5L(4인분 기준)를 팬에 붓고 센 불로 끓입니다.</p>
-            <p>팔팔 끓어오르면 표면에 뜨는 갈색 거품을 국자로 깔끔하게 걷어냅니다.</p>
-            <p>불을 <strong>중약불</strong>로 줄이고 팬 뚜껑을 덮은 뒤 <strong>25~30분간</strong> 뭉근하게 푹 끓입니다.</p>
-
-            <!-- 인터랙티브 타이머 -->
-            <div class="inline-timer">
-              <span class="timer-display" id="timerDisplay">25:00</span>
-              <div class="timer-actions">
-                <button type="button" class="timer-btn" id="timerStartBtn" onclick="toggleTimer()">타이머 시작</button>
-                <button type="button" class="timer-btn reset" onclick="resetTimer()">리셋</button>
+          </li>
+          <li class="step">
+            <span class="num" aria-hidden="true">3</span>
+            <div>
+              <h3>물과 다시다링 넣고 끓이기</h3>
+              <p>물을 붓고 <strong>소고기 다시다링</strong>을 넣은 뒤 센 불로 끓입니다.</p>
+              <p>국물이 팔팔 끓어오르면 표면에 뜨는 거품을 국자로 살짝 걷어냅니다.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="num" aria-hidden="true">4</span>
+            <div>
+              <h3>뭉근하게 푹 끓이기</h3>
+              <p>불을 <strong>중약불</strong>로 줄이고 뚜껑을 덮어 <strong>20~25분간</strong> 뭉근하게 끓입니다.</p>
+              
+              <!-- 인라인 타이머 -->
+              <div class="inline-timer">
+                <span class="timer-display" id="timerDisplay">25:00</span>
+                <div class="timer-actions">
+                  <button type="button" class="timer-btn" id="timerStartBtn" onclick="toggleTimer()">타이머 시작</button>
+                  <button type="button" class="timer-btn reset" onclick="resetTimer()">리셋</button>
+                </div>
               </div>
             </div>
-
-            <div class="step-tip" style="margin-top:12px;">
-              <span class="step-tip-icon">⏳</span>
-              <span>한우 2등급은 오래 끓일수록 질긴 조직이 풀리며 부드러워지고 국물에 깊은 감칠맛이 녹아듭니다.</span>
+          </li>
+          <li class="step">
+            <span class="num" aria-hidden="true">5</span>
+            <div>
+              <h3>간 맞추고 완성</h3>
+              <p>국간장을 둘러 색과 은은한 향을 더합니다.</p>
+              <p>다시다링으로 이미 감칠맛과 기본 간이 잡혀 있으므로, 국물 맛을 보고 부족한 간만 소금을 살짝 넣어 마무리합니다.</p>
             </div>
-          </div>
-        </li>
+          </li>
+        </ol>
+      </section>
 
-        <!-- 4단계 -->
-        <li class="step-card" id="step4">
-          <div class="step-badge">4</div>
-          <div class="step-content">
-            <h3>최종 간 맞추기 & 완성</h3>
-            <p>푹 끓인 후 뚜껑을 열고 남은 국간장과 액젓(참치액/멸치액젓 1큰술)을 넣어 간을 맞춥니다.</p>
-            <p>국물 맛을 보고 부족한 간은 굵은소금이나 꽃소금을 한 꼬집씩 넣어가며 취향에 맞게 마무리합니다.</p>
-            <div class="step-tip">
-              <span class="step-tip-icon">✨</span>
-              <span>액젓 1큰술이 조미료 없이도 밖에서 파는 유명 미역국 전문점의 깊은 감칠맛을 내줍니다.</span>
-            </div>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 2인분 냉동 보관 및 해동 가이드 -->
-    <div class="callout-box">
-      <div class="callout-title">
-        <span>🧊</span> 소분 냉동 & 완벽 해동 꿀팁
-      </div>
-      <div class="callout-content">
-        <ul>
-          <li><strong>완전 냉각:</strong> 조리 직후 바로 얼리면 미역 식감이 물러집니다. 식사할 만큼 덜어낸 후, 남은 분량은 팬째 실온에서 완전히 식혀주세요.</li>
-          <li><strong>국물/건더기 균형:</strong> 냉동용 밀폐용기나 지퍼백에 1회 식사량(1인분씩 소분 추천)으로 건더기와 국물이 골고루 들어가게 담습니다.</li>
-          <li><strong>공기 차단:</strong> 밀폐용기는 국물 표면에 랩을 밀착시키거나, 지퍼백의 공기를 최대한 빼고 밀봉하면 냉동실 냄새 흡수를 막고 최대 1개월까지 신선합니다.</li>
-          <li><strong>해동 & 재가열:</strong> 전날 냉장실로 옮겨 자연 해동하거나 전자레인지로 살짝 해동 후 냄비에 붓습니다. 재가열 시 국물이 졸아들어 짤 수 있으므로 <strong>물 50mL(소주잔 1잔 정도)</strong>를 보충해 끓이면 방금 만든 첫 맛 그대로 살아납니다!</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 팬 규격 안내 -->
-    <div class="callout-box" style="background:var(--surface); border-color:var(--border);">
-      <div class="callout-title" style="color:var(--primary);">
-        <span>🍳</span> 쿡앤쿡 24cm 베로나 멀티팬 조리 팁
-      </div>
-      <div class="callout-content" style="color:var(--text-muted); font-size:14px;">
-        팬 지름 24cm, 깊이 8.1cm로 전체 용량이 약 2.8L입니다. 소고기 260g과 미역, 물 1.5L를 넣었을 때 냄비의 약 65% 수위까지 차오르므로 센 불에서 끓어넘칠 염려 없이 4인분을 안정적으로 조리할 수 있습니다.
-      </div>
-    </div>
+      <footer class="footer">
+        <a href="index.html">핸드북 목록으로</a>
+      </footer>
+    </article>
   </main>
-
-  <footer>
-    <p><a href="index.html" style="text-decoration:underline;">← 나의 레시피 핸드북 목록으로 돌아가기</a></p>
-    <p style="margin-top:6px;">기록일: 2026년 11월 11일 · 김민정의 요리 핸드북</p>
-  </footer>
 </div>
 
 <script>
-// 분량 토글
+// 인분수 선택
 function setPortion(p) {
   const btn2 = document.getElementById('btnPortion2');
   const btn4 = document.getElementById('btnPortion4');
-  const desc = document.getElementById('portionDesc');
-  const qtys = document.querySelectorAll('.item-qty');
+  const amounts = document.querySelectorAll('.amount');
 
   if (p === 2) {
     btn2.classList.add('active');
     btn4.classList.remove('active');
-    desc.textContent = '2인분 (기본 조리)';
-    qtys.forEach(el => {
+    amounts.forEach(el => {
       const q = el.getAttribute('data-qty-2');
       if (q) el.textContent = q;
     });
   } else {
     btn4.classList.add('active');
     btn2.classList.remove('active');
-    desc.textContent = '4인분 (넉넉한 조리 & 소분 보관)';
-    qtys.forEach(el => {
+    amounts.forEach(el => {
       const q = el.getAttribute('data-qty-4');
       if (q) el.textContent = q;
     });
   }
 }
 
-// 화면 꺼짐 방지 (Wake Lock API)
+// 화면 켜짐 유지 (Wake Lock API)
 let wakeLock = null;
 async function toggleWakeLock() {
   const btn = document.getElementById('wakeLockBtn');
+  const txt = document.getElementById('wakeLockText');
   const icon = document.getElementById('wakeLockIcon');
-  const text = document.getElementById('wakeLockText');
 
-  if (!('wakeLock' in navigator)) {
-    alert('이 브라우저는 화면 켜짐 유지 기능을 지원하지 않습니다.');
-    return;
-  }
-
-  if (wakeLock !== null) {
-    await wakeLock.release();
-    wakeLock = null;
-    btn.classList.remove('active');
-    icon.textContent = '💡';
-    text.textContent = '화면 켜짐 유지';
-  } else {
+  if (!wakeLock) {
     try {
-      wakeLock = await navigator.wakeLock.request('screen');
-      btn.classList.add('active');
-      icon.textContent = '🌟';
-      text.textContent = '화면 켜짐 유지 중';
-      wakeLock.addEventListener('release', () => {
-        wakeLock = null;
-        btn.classList.remove('active');
-        icon.textContent = '💡';
-        text.textContent = '화면 켜짐 유지';
-      });
+      if ('wakeLock' in navigator) {
+        wakeLock = await navigator.wakeLock.request('screen');
+        btn.classList.add('active');
+        txt.textContent = '화면 켜짐 유지 중';
+        icon.textContent = '🌟';
+        wakeLock.addEventListener('release', () => {
+          wakeLock = null;
+          btn.classList.remove('active');
+          txt.textContent = '화면 켜짐 유지';
+          icon.textContent = '💡';
+        });
+      } else {
+        alert('이 브라우저는 화면 켜짐 유지 기능을 지원하지 않습니다.');
+      }
     } catch (err) {
       console.error(err);
+      alert('화면 켜짐 유지를 활성화할 수 없습니다.');
     }
+  } else {
+    wakeLock.release();
+    wakeLock = null;
+    btn.classList.remove('active');
+    txt.textContent = '화면 켜짐 유지';
+    icon.textContent = '💡';
   }
 }
 
-// 타이머 (25분 카운트다운)
+// 조리 타이머 (25분)
+let timerSeconds = 25 * 60;
 let timerInterval = null;
-let timeLeft = 25 * 60; // 25분 (초 단위)
-let isRunning = false;
+let timerRunning = false;
 
 function updateTimerDisplay() {
-  const m = Math.floor(timeLeft / 60);
-  const s = timeLeft % 60;
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
   document.getElementById('timerDisplay').textContent = 
-    `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
 }
 
 function playBeep() {
@@ -780,57 +596,58 @@ function playBeep() {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.2);
     osc.connect(gain);
     gain.connect(ctx.destination);
-    osc.frequency.value = 880;
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
     osc.start();
-    osc.stop(ctx.currentTime + 0.6);
-  } catch (e) {}
+    osc.stop(ctx.currentTime + 1.2);
+  } catch(e) {}
+  if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
 }
 
 function toggleTimer() {
   const btn = document.getElementById('timerStartBtn');
-  if (isRunning) {
-    clearInterval(timerInterval);
-    isRunning = false;
-    btn.textContent = '계속 진행';
-  } else {
-    isRunning = true;
+  if (!timerRunning) {
+    if (timerSeconds <= 0) timerSeconds = 25 * 60;
+    timerRunning = true;
     btn.textContent = '일시정지';
+    btn.style.background = '#e07d4b';
+    btn.style.borderColor = '#e07d4b';
     timerInterval = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        updateTimerDisplay();
-      } else {
+      timerSeconds--;
+      updateTimerDisplay();
+      if (timerSeconds <= 0) {
         clearInterval(timerInterval);
-        isRunning = false;
-        btn.textContent = '완료됨';
+        timerRunning = false;
+        btn.textContent = '완료!';
+        btn.style.background = '#2568a0';
+        btn.style.borderColor = '#2568a0';
         playBeep();
-        if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
-        alert('⏰ 25분 경과! 뚜껑을 열고 간을 맞출 시간입니다.');
+        alert('미역국 조리 시간(25분)이 완료되었습니다!');
       }
     }, 1000);
+  } else {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    btn.textContent = '계속하기';
+    btn.style.background = '#2568a0';
+    btn.style.borderColor = '#2568a0';
   }
 }
 
 function resetTimer() {
-  clearInterval(timerInterval);
-  isRunning = false;
-  timeLeft = 25 * 60;
+  if (timerInterval) clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = 25 * 60;
   updateTimerDisplay();
-  document.getElementById('timerStartBtn').textContent = '타이머 시작';
+  const btn = document.getElementById('timerStartBtn');
+  btn.textContent = '타이머 시작';
+  btn.style.background = '#2568a0';
+  btn.style.borderColor = '#2568a0';
 }
-
-// 단계 클릭 시 완료 토글
-document.querySelectorAll('.step-card').forEach(card => {
-  card.addEventListener('click', (e) => {
-    // 버튼이나 타이머 조작 시에는 단계 완료 토글 방지
-    if (e.target.closest('button')) return;
-    card.classList.toggle('done');
-  });
-});
 </script>
-
 </body>
 </html>
