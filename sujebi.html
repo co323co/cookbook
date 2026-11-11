@@ -16,9 +16,23 @@
 
 .recipe-view{border-top:2px solid #cad5e1;margin-top:40px;padding-top:24px;scroll-margin-top:16px}html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#142a44">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <div class="shell"><main><article id="recipe-anchovy-sujebi" class="recipe-view"><p><a href="index.html">← 목록</a></p><h1>손수제비</h1><section class="ingredients video-source"><h2>참고 영상</h2><a href="https://www.youtube.com/shorts/bVi-KEfB1mk" target="_blank" rel="noopener noreferrer">쫄깃쫄깃 맛있는 수제비 만들기 · 오메추</a></section><section class="ingredients"><h2>재료</h2><table class="ingredient-table"><thead><tr><th scope="col">구분</th><th scope="col">재료</th><th scope="col">분량</th></tr></thead><tbody><tr><th scope="rowgroup" rowspan="1">반죽</th><td><label class="ingredient-check"><input type="checkbox"><span>수제비용 가루</span></label></td><td>포장지 안내 분량</td></tr></tbody><tbody><tr><th scope="rowgroup" rowspan="3">채소</th><td><label class="ingredient-check"><input type="checkbox"><span>감자</span></label></td><td>큰 것 1개</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>양파</span></label></td><td>작은 것 ½개</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>대파</span></label></td><td>⅕대</td></tr></tbody><tbody><tr><th scope="rowgroup" rowspan="2">육수</th><td><label class="ingredient-check"><input type="checkbox"><span>물</span></label></td><td>적당량</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>멸치 코인육수</span></label></td><td>약 2개</td></tr></tbody><tbody><tr><th scope="rowgroup" rowspan="4">양념</th><td><label class="ingredient-check"><input type="checkbox"><span>다진 마늘</span></label></td><td>1스푼</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>참치액 · 국간장</span></label></td><td>간을 보며 조절</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>후추</span></label></td><td>취향껏</td></tr><tr><td><label class="ingredient-check"><input type="checkbox"><span>맛소금 · 액젓 (선택)</span></label></td><td>약간</td></tr></tbody></table></section><section><h2>만드는 순서</h2><ol class="steps"><li class="step"><span class="num" aria-hidden="true">1</span><div><h3>반죽하고 숙성하기</h3><p class="method">수제비용 가루와 물을 포장지 배합대로 넣고 반죽한 뒤, 냉장고에서 30분 이상 숙성합니다.</p><p class="method">중력분을 쓴다면 중력분 3컵, 찬물 1컵, 소금 약간으로 반죽합니다. 감자전분은 선택해서 소량 넣습니다.</p></div></li><li class="step"><span class="num" aria-hidden="true">2</span><div><h3>채소 썰기</h3><p class="method">큰 감자 1개와 작은 양파 ½개는 먹기 좋은 크기로 자르고, 대파 ⅕대는 썰어둡니다.</p></div></li><li class="step"><span class="num" aria-hidden="true">3</span><div><h3>육수 끓이기</h3><p class="method">냄비의 약 ⅓ 높이까지 물을 붓고, 멸치 코인육수 약 2개와 감자를 넣어 끓입니다.</p></div></li><li class="step"><span class="num" aria-hidden="true">4</span><div><h3>수제비 넣기</h3><p class="method">국물이 끓으면 숙성한 반죽을 먹기 좋은 크기로 뜯어 넣습니다.</p></div></li><li class="step"><span class="num" aria-hidden="true">5</span><div><h3>양념하고 끓이기</h3><p class="method">참치액과 국간장으로 간을 하고, 다진 마늘 1스푼과 양파를 넣어 5분 더 끓입니다. 액젓은 선택해서 넣습니다.</p></div></li><li class="step"><span class="num" aria-hidden="true">6</span><div><h3>마지막 간 맞추기</h3><p class="method">수제비가 익었는지 확인하고 국물 맛을 봅니다. 간이 부족하면 맛소금을 조금씩 넣습니다(선택).</p><p class="method">대파와 후추를 넣어 마무리합니다.</p></div></li></ol></section><footer class="footer"><a href="index.html">핸드북 목록으로</a></footer></article></main></div>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
+}
+</script>
 </body>
 </html>

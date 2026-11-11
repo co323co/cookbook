@@ -374,6 +374,13 @@ h2 {
 .footer a { color: #2568a0; font-weight: 600; text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#142a44">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -666,6 +673,13 @@ function resetTimer() {
   btn.textContent = '타이머 시작';
   btn.style.background = '#2568a0';
   btn.style.borderColor = '#2568a0';
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
 }
 </script>
 </body>
