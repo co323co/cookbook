@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>소고기 미역국</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+<meta name="theme-color" content="#142a44">
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -35,6 +39,10 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 /* 상단 헤더 & 네비게이션 */
 .top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #f7f9fc;
   padding: 24px 5%;
   border-bottom: 1px solid #d5dde6;
 }
@@ -373,9 +381,14 @@ h2 {
   <header class="top-nav">
     <div class="top-nav-inner">
       <a class="back-link" href="index.html">← 목록</a>
-      <button type="button" id="wakeLockBtn" class="wakelock-btn" onclick="toggleWakeLock()">
-        <span id="wakeLockIcon">💡</span> <span id="wakeLockText">화면 켜짐 유지</span>
-      </button>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div id="stickyTimerBadge" style="display:none; align-items:center; gap:6px; background:#142a44; color:#fff; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:700;">
+          <span>⏱️</span> <span id="stickyTimerDisplay">25:00</span>
+        </div>
+        <button type="button" id="wakeLockBtn" class="wakelock-btn" onclick="toggleWakeLock()">
+          <span id="wakeLockIcon">💡</span> <span id="wakeLockText">화면 켜짐 유지</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -428,30 +441,30 @@ h2 {
             <tr>
               <th scope="rowgroup" rowspan="2">육수</th>
               <td><label class="ingredient-check"><input type="checkbox"><span>물</span></label></td>
-              <td class="amount" data-qty-2="750~800mL" data-qty-4="1.5L">1.5L</td>
+              <td class="amount" data-qty-2="750~800mL (생수 1.5병)" data-qty-4="1.5L (생수 3병)">1.5L (생수 3병)</td>
             </tr>
             <tr>
               <td><label class="ingredient-check"><input type="checkbox"><span>소고기 다시다링</span></label></td>
-              <td class="amount" data-qty-2="2개" data-qty-4="3~4개">3~4개</td>
+              <td class="amount" data-qty-2="2개 (생수 1병당 1개)" data-qty-4="3~4개 (생수 1병당 1개)">3~4개</td>
             </tr>
           </tbody>
           <tbody>
             <tr>
               <th scope="rowgroup" rowspan="4">양념</th>
               <td><label class="ingredient-check"><input type="checkbox"><span>참기름</span></label></td>
-              <td class="amount" data-qty-2="1큰술" data-qty-4="2큰술">2큰술</td>
+              <td class="amount" data-qty-2="밥숟가락 1스푼" data-qty-4="밥숟가락 2스푼">밥숟가락 2스푼</td>
             </tr>
             <tr>
               <td><label class="ingredient-check"><input type="checkbox"><span>다진 마늘</span></label></td>
-              <td class="amount" data-qty-2="½큰술" data-qty-4="1큰술">1큰술</td>
+              <td class="amount" data-qty-2="밥숟가락 반 스푼" data-qty-4="밥숟가락 깎아서 1스푼">밥숟가락 깎아서 1스푼</td>
             </tr>
             <tr>
               <td><label class="ingredient-check"><input type="checkbox"><span>국간장</span></label></td>
-              <td class="amount" data-qty-2="1큰술" data-qty-4="1.5~2큰술">1.5~2큰술</td>
+              <td class="amount" data-qty-2="밥숟가락 1스푼" data-qty-4="밥숟가락 1.5~2스푼">밥숟가락 1.5~2스푼</td>
             </tr>
             <tr>
               <td><label class="ingredient-check"><input type="checkbox"><span>소금 (선택)</span></label></td>
-              <td class="amount" data-qty-2="약간" data-qty-4="약간">간 보며 조절</td>
+              <td class="amount" data-qty-2="한 꼬집" data-qty-4="약간">마지막 간 조절</td>
             </tr>
           </tbody>
         </table>
@@ -473,8 +486,8 @@ h2 {
             <span class="num" aria-hidden="true">2</span>
             <div>
               <h3>고기와 미역 볶기</h3>
-              <p>냄비에 참기름을 두르고 중불에서 소고기 겉면 핏기가 가실 정도로만 볶습니다.</p>
-              <p>고기 속이 아직 붉을 때 미역과 다진 마늘을 넣고, 미역에 고기 기름이 잘 배도록 2~3분간 함께 볶습니다.</p>
+              <p>냄비에 참기름을 두르고 중불에서 소고기 겉면 핏기가 가실 정도로만 가볍게 볶습니다.</p>
+              <p><strong>★속은 아직 불그스름할 때 바로 미역과 다진 마늘을 넣으세요!</strong> 미역이 기름을 먹고 야들야들해지며 짙은 초록색이 될 때까지 딱 2~3분만 달달 볶다가 바로 물을 붓습니다. (고기 속은 나중에 물 끓일 때 다 익으므로 바닥이 타기 전에 물을 부어주세요!)</p>
             </div>
           </li>
           <li class="step">
@@ -587,8 +600,14 @@ let timerRunning = false;
 function updateTimerDisplay() {
   const m = Math.floor(timerSeconds / 60);
   const s = timerSeconds % 60;
-  document.getElementById('timerDisplay').textContent = 
-    String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  const timeStr = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  document.getElementById('timerDisplay').textContent = timeStr;
+  const stickyBadge = document.getElementById('stickyTimerBadge');
+  const stickyDisp = document.getElementById('stickyTimerDisplay');
+  if (stickyDisp) stickyDisp.textContent = timeStr;
+  if (stickyBadge) {
+    stickyBadge.style.display = timerRunning ? 'inline-flex' : 'none';
+  }
 }
 
 function playBeep() {
