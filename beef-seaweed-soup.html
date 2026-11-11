@@ -446,7 +446,7 @@ footer a {
     <header class="recipe-header">
       <span class="category-badge">요리 / 국물요리</span>
       <h1>진한 소고기 미역국</h1>
-      <p class="intro-text">한우 2등급 국거리의 진한 풍미를 살리고 24cm 멀티팬 규격에 최적화한 레시피. 오늘 먹을 2인분과 냉동 보관할 2인분을 한 번에 완성합니다.</p>
+      <p class="intro-text">한우 2등급 국거리의 진한 풍미를 살리고 24cm 멀티팬 규격에 최적화한 레시피. 넉넉하게 끓여두고 소분 냉동 보관하기 좋습니다.</p>
 
       <div class="meta-grid">
         <div class="meta-chip">
@@ -472,7 +472,7 @@ footer a {
     <div class="portion-card">
       <div class="portion-info">
         <h3>분량 선택</h3>
-        <p id="portionDesc">4인분 (2인분 식사 + 2인분 소분 냉동)</p>
+        <p id="portionDesc">4인분 (넉넉한 조리 & 소분 보관)</p>
       </div>
       <div class="portion-toggle">
         <button type="button" id="btnPortion2" onclick="setPortion(2)">2인분</button>
@@ -639,11 +639,11 @@ footer a {
     <!-- 2인분 냉동 보관 및 해동 가이드 -->
     <div class="callout-box">
       <div class="callout-title">
-        <span>🧊</span> 2인분 소분 냉동 & 완벽 해동 꿀팁
+        <span>🧊</span> 소분 냉동 & 완벽 해동 꿀팁
       </div>
       <div class="callout-content">
         <ul>
-          <li><strong>완전 냉각:</strong> 조리 직후 바로 얼리면 미역 식감이 물러집니다. 오늘 먹을 분량을 덜어낸 후, 남은 2인분은 팬째 실온에서 완전히 식혀주세요.</li>
+          <li><strong>완전 냉각:</strong> 조리 직후 바로 얼리면 미역 식감이 물러집니다. 식사할 만큼 덜어낸 후, 남은 분량은 팬째 실온에서 완전히 식혀주세요.</li>
           <li><strong>국물/건더기 균형:</strong> 냉동용 밀폐용기나 지퍼백에 1회 식사량(1인분씩 소분 추천)으로 건더기와 국물이 골고루 들어가게 담습니다.</li>
           <li><strong>공기 차단:</strong> 밀폐용기는 국물 표면에 랩을 밀착시키거나, 지퍼백의 공기를 최대한 빼고 밀봉하면 냉동실 냄새 흡수를 막고 최대 1개월까지 신선합니다.</li>
           <li><strong>해동 & 재가열:</strong> 전날 냉장실로 옮겨 자연 해동하거나 전자레인지로 살짝 해동 후 냄비에 붓습니다. 재가열 시 국물이 졸아들어 짤 수 있으므로 <strong>물 50mL(소주잔 1잔 정도)</strong>를 보충해 끓이면 방금 만든 첫 맛 그대로 살아납니다!</li>
@@ -679,7 +679,7 @@ function setPortion(p) {
   if (p === 2) {
     btn2.classList.add('active');
     btn4.classList.remove('active');
-    desc.textContent = '2인분 (오늘 바로 먹는 분량)';
+    desc.textContent = '2인분 (기본 조리)';
     qtys.forEach(el => {
       const q = el.getAttribute('data-qty-2');
       if (q) el.textContent = q;
@@ -687,7 +687,7 @@ function setPortion(p) {
   } else {
     btn4.classList.add('active');
     btn2.classList.remove('active');
-    desc.textContent = '4인분 (2인분 식사 + 2인분 소분 냉동)';
+    desc.textContent = '4인분 (넉넉한 조리 & 소분 보관)';
     qtys.forEach(el => {
       const q = el.getAttribute('data-qty-4');
       if (q) el.textContent = q;
