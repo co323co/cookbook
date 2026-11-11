@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>소고기 미역국 | 나의 레시피 핸드북</title>
+<style>
+:root {
+  --bg: #f8f6f2;
+  --surface: #ffffff;
+  --surface-alt: #f1ede5;
+  --primary: #2d5a3f;
+  --primary-light: #e8f0eb;
+  --primary-dark: #1b3a28;
+  --accent: #c86835;
+  --text: #222923;
+  --text-muted: #667067;
+  --text-light: #8e998f;
+  --border: #e3ded5;
+  --border-focus: #2d5a3f;
+  --shadow-sm: 0 2px 8px rgba(35, 45, 38, 0.04);
+  --shadow-md: 0 6px 20px rgba(35, 45, 38, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151816;
+    --surface: #1e2320;
+    --surface-alt: #262c28;
+    --primary: #52a370;
+    --primary-light: #203527;
+    --primary-dark: #74bf8f;
+    --accent: #e07d4b;
+    --text: #e9edea;
+    --text-muted: #9ba89d;
+    --text-light: #6e7a70;
+    --border: #2e3730;
+    --border-focus: #52a370;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+
+.shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 헤더 & 네비게이션 */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(248, 246, 242, 0.85);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  margin-bottom: 24px;
+}
+@media (prefers-color-scheme: dark) {
+  .top-nav { background: rgba(21, 24, 22, 0.85); }
+}
+
+.top-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-light);
+  transition: all 0.2s ease;
+}
+.back-link:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.wakelock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+.wakelock-btn.active {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* 레시피 히어로 */
+.recipe-header {
+  margin-bottom: 28px;
+}
+.category-badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.2px;
+  margin-bottom: 8px;
+}
+h1 {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.intro-text {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 메타 칩스 */
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0 28px;
+}
+.meta-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.meta-chip .label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.meta-chip .val {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* 분량 선택 컨트롤 */
+.portion-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+.portion-info h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.portion-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.portion-toggle {
+  display: flex;
+  background: var(--surface-alt);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  gap: 4px;
+}
+.portion-toggle button {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+.portion-toggle button.active {
+  background: var(--surface);
+  color: var(--primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* 섹션 공통 */
+.card-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 재료 테이블 & 리스트 */
+.ingredient-group {
+  margin-bottom: 20px;
+}
+.ingredient-group:last-child {
+  margin-bottom: 0;
+}
+.group-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.ingredient-items {
+  list-style: none;
+}
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  transition: background 0.15s;
+}
+.ingredient-item:last-child {
+  border-bottom: none;
+}
+.ingredient-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+.ingredient-label input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.ingredient-label input[type="checkbox"]:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.ingredient-label input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.ingredient-item:has(input:checked) .item-name {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+.ingredient-item:has(input:checked) .item-qty {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+.item-qty {
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-align: right;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) {
+  .item-qty { color: var(--primary); }
+}
+
+/* 조리 순서 */
+.step-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.step-card.done {
+  opacity: 0.55;
+  background: var(--surface-alt);
+}
+.step-badge {
+  width: 34px;
+  height: 34px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-card.done .step-badge {
+  background: var(--border);
+  color: var(--text-light);
+}
+.step-content h3 {
+  font-size: 18px;
+  font-weight: 750;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-content p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.step-content p:last-child {
+  margin-bottom: 0;
+}
+.step-tip {
+  background: var(--surface-alt);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.step-tip-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+/* 인터랙티브 타이머 */
+.inline-timer {
+  margin-top: 14px;
+  background: var(--primary-light);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.timer-display {
+  font-size: 20px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+.timer-actions {
+  display: flex;
+  gap: 6px;
+}
+.timer-btn {
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.timer-btn:hover { background: var(--primary-dark); }
+.timer-btn.reset {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+/* 냉동 보관 & 장비 안내 콜아웃 */
+.callout-box {
+  background: #fbf6ee;
+  border: 1px solid #ebdcc5;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+@media (prefers-color-scheme: dark) {
+  .callout-box {
+    background: #231f18;
+    border-color: #3f3629;
+  }
+}
+.callout-title {
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.callout-content {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.callout-content ul {
+  padding-left: 20px;
+  margin-top: 6px;
+}
+.callout-content li {
+  margin-bottom: 4px;
+}
+
+/* 푸터 */
+footer {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+@media (max-width: 600px) {
+  .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 28px; }
+  .card-section { padding: 18px 16px; }
+  .step-card { padding: 16px 14px; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- 상단 네비게이션 -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a class="back-link" href="index.html">
+        ← 핸드북 목록
+      </a>
+      <button type="button" id="wakeLockBtn" class="wakelock-btn" onclick="toggleWakeLock()">
+        <span id="wakeLockIcon">💡</span> <span id="wakeLockText">화면 켜짐 유지</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 레시피 헤더 -->
+    <header class="recipe-header">
+      <span class="category-badge">요리 / 국물요리</span>
+      <h1>진한 소고기 미역국</h1>
+      <p class="intro-text">한우 2등급 국거리의 진한 풍미를 살리고 24cm 멀티팬 규격에 최적화한 레시피. 오늘 먹을 2인분과 냉동 보관할 2인분을 한 번에 완성합니다.</p>
+
+      <div class="meta-grid">
+        <div class="meta-chip">
+          <span class="label">조리 시간</span>
+          <span class="val">약 40분</span>
+        </div>
+        <div class="meta-chip">
+          <span class="label">난이도</span>
+          <span class="val">쉬움 (초급)</span>
+        </div>
+        <div class="meta-chip">
+          <span class="label">추천 냄비</span>
+          <span class="val">24cm 멀티팬</span>
+        </div>
+        <div class="meta-chip">
+          <span class="label">보관 방법</span>
+          <span class="val">냉동 1개월</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 분량 선택기 -->
+    <div class="portion-card">
+      <div class="portion-info">
+        <h3>분량 선택</h3>
+        <p id="portionDesc">4인분 (2인분 식사 + 2인분 소분 냉동)</p>
+      </div>
+      <div class="portion-toggle">
+        <button type="button" id="btnPortion2" onclick="setPortion(2)">2인분</button>
+        <button type="button" id="btnPortion4" class="active" onclick="setPortion(4)">4인분</button>
+      </div>
+    </div>
+
+    <!-- 재료 섹션 -->
+    <section class="card-section">
+      <div class="section-title-row">
+        <h2 class="section-title">🥗 필요 재료</h2>
+        <span style="font-size:12px; color:var(--text-light);">준비된 재료는 체크해 두세요</span>
+      </div>
+
+      <!-- 주재료 -->
+      <div class="ingredient-group">
+        <span class="group-header">주재료</span>
+        <ul class="ingredient-items">
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">소고기 국거리 (한우 2등급/양지)</span>
+            </label>
+            <span class="item-qty" data-qty-2="130g" data-qty-4="260g">260g</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">마른 미역</span>
+            </label>
+            <span class="item-qty" data-qty-2="10~12g (불리면 120g)" data-qty-4="20~25g (종이컵 1컵 / 불리면 250g)">20~25g (종이컵 1컵)</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">물 (또는 쌀뜨물)</span>
+            </label>
+            <span class="item-qty" data-qty-2="750~800mL" data-qty-4="1.5L (생수병 3병)">1.5L (생수병 3병)</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 양념 -->
+      <div class="ingredient-group">
+        <span class="group-header">양념 및 간</span>
+        <ul class="ingredient-items">
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">참기름</span>
+            </label>
+            <span class="item-qty" data-qty-2="1큰술" data-qty-4="2큰술">2큰술</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">국간장</span>
+            </label>
+            <span class="item-qty" data-qty-2="1큰술 (볶을 때 0.5, 끓일 때 0.5)" data-qty-4="2큰술 (볶을 때 1, 끓일 때 1)">2큰술</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">다진 마늘</span>
+            </label>
+            <span class="item-qty" data-qty-2="½큰술" data-qty-4="1큰술">1큰술</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">액젓 (참치액 또는 멸치액젓)</span>
+            </label>
+            <span class="item-qty" data-qty-2="½큰술" data-qty-4="1큰술 (감칠맛 비법)">1큰술</span>
+          </li>
+          <li class="ingredient-item">
+            <label class="ingredient-label">
+              <input type="checkbox">
+              <span class="item-name">굵은소금 / 꽃소금</span>
+            </label>
+            <span class="item-qty" data-qty-2="한 꼬집 (마지막 조절)" data-qty-4="약간 (마지막 간 조절)">약간</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 조리 순서 섹션 -->
+    <section class="card-section">
+      <div class="section-title-row">
+        <h2 class="section-title">🍳 만드는 순서</h2>
+        <span style="font-size:12px; color:var(--text-light);">완료된 단계는 체크하세요</span>
+      </div>
+
+      <ol class="step-list">
+        <!-- 1단계 -->
+        <li class="step-card" id="step1">
+          <div class="step-badge">1</div>
+          <div class="step-content">
+            <h3>재료 밑준비</h3>
+            <p><strong>미역 불리기:</strong> 마른 미역을 찬물에 담가 10~15분간 불립니다. 불린 미역은 찬물에 2~3회 조물조물 씻어 헹군 후, 물기를 꼭 짜서 3~4cm 길이로 썰어둡니다.</p>
+            <p><strong>소고기 핏물 제거:</strong> 국거리 고기는 물에 씻지 말고, 키친타월로 겉면의 핏물만 가볍게 톡톡 눌러 닦아냅니다.</p>
+            <div class="step-tip">
+              <span class="step-tip-icon">💡</span>
+              <span>한우 2등급 국거리는 마블링이 적고 육향이 진해 핏물만 잘 닦아도 누린내 없이 깔끔하게 끓여집니다.</span>
+            </div>
+          </div>
+        </li>
+
+        <!-- 2단계 -->
+        <li class="step-card" id="step2">
+          <div class="step-badge">2</div>
+          <div class="step-content">
+            <h3>고기와 미역 볶기 (촉촉한 육즙 & 진한 국물의 핵심)</h3>
+            <p>24cm 팬에 참기름 2큰술을 두르고 중불로 달군 뒤, 소고기를 넣고 볶습니다.</p>
+            <p><strong>고기 핏기만 살짝 가실 때(겉면 60~70%만 익었을 때)</strong> 국간장 1큰술을 둘러 밑간을 입히고, <strong>속이 아직 불그스름할 때 바로</strong> 물기 꼭 짠 미역과 다진 마늘을 넣습니다.</p>
+            <p>미역에서 나오는 은은한 수분이 고기가 타거나 퍽퍽해지는 것을 막아주며, 고기 기름과 참기름을 미역이 싹 흡수합니다. 미역이 부드러워지고 짙은 초록색이 될 때까지 2~3분간 달달 볶아줍니다.</p>
+            <div class="step-tip">
+              <span class="step-tip-icon">💡</span>
+              <span>한우 2등급 살코기는 완전히 다 익을 때까지 고기만 볶으면 육즙이 빠져 질겨집니다. 겉만 살짝 코팅하고 바로 미역을 넣어 미역 수분으로 촉촉하게 볶는 것이 핵심 비결입니다.</span>
+            </div>
+          </div>
+        </li>
+
+        <!-- 3단계 -->
+        <li class="step-card" id="step3">
+          <div class="step-badge">3</div>
+          <div class="step-content">
+            <h3>물 붓고 푹 끓이기</h3>
+            <p>물 1.5L(4인분 기준)를 팬에 붓고 센 불로 끓입니다.</p>
+            <p>팔팔 끓어오르면 표면에 뜨는 갈색 거품을 국자로 깔끔하게 걷어냅니다.</p>
+            <p>불을 <strong>중약불</strong>로 줄이고 팬 뚜껑을 덮은 뒤 <strong>25~30분간</strong> 뭉근하게 푹 끓입니다.</p>
+
+            <!-- 인터랙티브 타이머 -->
+            <div class="inline-timer">
+              <span class="timer-display" id="timerDisplay">25:00</span>
+              <div class="timer-actions">
+                <button type="button" class="timer-btn" id="timerStartBtn" onclick="toggleTimer()">타이머 시작</button>
+                <button type="button" class="timer-btn reset" onclick="resetTimer()">리셋</button>
+              </div>
+            </div>
+
+            <div class="step-tip" style="margin-top:12px;">
+              <span class="step-tip-icon">⏳</span>
+              <span>한우 2등급은 오래 끓일수록 질긴 조직이 풀리며 부드러워지고 국물에 깊은 감칠맛이 녹아듭니다.</span>
+            </div>
+          </div>
+        </li>
+
+        <!-- 4단계 -->
+        <li class="step-card" id="step4">
+          <div class="step-badge">4</div>
+          <div class="step-content">
+            <h3>최종 간 맞추기 & 완성</h3>
+            <p>푹 끓인 후 뚜껑을 열고 남은 국간장과 액젓(참치액/멸치액젓 1큰술)을 넣어 간을 맞춥니다.</p>
+            <p>국물 맛을 보고 부족한 간은 굵은소금이나 꽃소금을 한 꼬집씩 넣어가며 취향에 맞게 마무리합니다.</p>
+            <div class="step-tip">
+              <span class="step-tip-icon">✨</span>
+              <span>액젓 1큰술이 조미료 없이도 밖에서 파는 유명 미역국 전문점의 깊은 감칠맛을 내줍니다.</span>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 2인분 냉동 보관 및 해동 가이드 -->
+    <div class="callout-box">
+      <div class="callout-title">
+        <span>🧊</span> 2인분 소분 냉동 & 완벽 해동 꿀팁
+      </div>
+      <div class="callout-content">
+        <ul>
+          <li><strong>완전 냉각:</strong> 조리 직후 바로 얼리면 미역 식감이 물러집니다. 오늘 먹을 분량을 덜어낸 후, 남은 2인분은 팬째 실온에서 완전히 식혀주세요.</li>
+          <li><strong>국물/건더기 균형:</strong> 냉동용 밀폐용기나 지퍼백에 1회 식사량(1인분씩 소분 추천)으로 건더기와 국물이 골고루 들어가게 담습니다.</li>
+          <li><strong>공기 차단:</strong> 밀폐용기는 국물 표면에 랩을 밀착시키거나, 지퍼백의 공기를 최대한 빼고 밀봉하면 냉동실 냄새 흡수를 막고 최대 1개월까지 신선합니다.</li>
+          <li><strong>해동 & 재가열:</strong> 전날 냉장실로 옮겨 자연 해동하거나 전자레인지로 살짝 해동 후 냄비에 붓습니다. 재가열 시 국물이 졸아들어 짤 수 있으므로 <strong>물 50mL(소주잔 1잔 정도)</strong>를 보충해 끓이면 방금 만든 첫 맛 그대로 살아납니다!</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 팬 규격 안내 -->
+    <div class="callout-box" style="background:var(--surface); border-color:var(--border);">
+      <div class="callout-title" style="color:var(--primary);">
+        <span>🍳</span> 쿡앤쿡 24cm 베로나 멀티팬 조리 팁
+      </div>
+      <div class="callout-content" style="color:var(--text-muted); font-size:14px;">
+        팬 지름 24cm, 깊이 8.1cm로 전체 용량이 약 2.8L입니다. 소고기 260g과 미역, 물 1.5L를 넣었을 때 냄비의 약 65% 수위까지 차오르므로 센 불에서 끓어넘칠 염려 없이 4인분을 안정적으로 조리할 수 있습니다.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><a href="index.html" style="text-decoration:underline;">← 나의 레시피 핸드북 목록으로 돌아가기</a></p>
+    <p style="margin-top:6px;">기록일: 2026년 11월 11일 · 김민정의 요리 핸드북</p>
+  </footer>
+</div>
+
+<script>
+// 분량 토글
+function setPortion(p) {
+  const btn2 = document.getElementById('btnPortion2');
+  const btn4 = document.getElementById('btnPortion4');
+  const desc = document.getElementById('portionDesc');
+  const qtys = document.querySelectorAll('.item-qty');
+
+  if (p === 2) {
+    btn2.classList.add('active');
+    btn4.classList.remove('active');
+    desc.textContent = '2인분 (오늘 바로 먹는 분량)';
+    qtys.forEach(el => {
+      const q = el.getAttribute('data-qty-2');
+      if (q) el.textContent = q;
+    });
+  } else {
+    btn4.classList.add('active');
+    btn2.classList.remove('active');
+    desc.textContent = '4인분 (2인분 식사 + 2인분 소분 냉동)';
+    qtys.forEach(el => {
+      const q = el.getAttribute('data-qty-4');
+      if (q) el.textContent = q;
+    });
+  }
+}
+
+// 화면 꺼짐 방지 (Wake Lock API)
+let wakeLock = null;
+async function toggleWakeLock() {
+  const btn = document.getElementById('wakeLockBtn');
+  const icon = document.getElementById('wakeLockIcon');
+  const text = document.getElementById('wakeLockText');
+
+  if (!('wakeLock' in navigator)) {
+    alert('이 브라우저는 화면 켜짐 유지 기능을 지원하지 않습니다.');
+    return;
+  }
+
+  if (wakeLock !== null) {
+    await wakeLock.release();
+    wakeLock = null;
+    btn.classList.remove('active');
+    icon.textContent = '💡';
+    text.textContent = '화면 켜짐 유지';
+  } else {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      btn.classList.add('active');
+      icon.textContent = '🌟';
+      text.textContent = '화면 켜짐 유지 중';
+      wakeLock.addEventListener('release', () => {
+        wakeLock = null;
+        btn.classList.remove('active');
+        icon.textContent = '💡';
+        text.textContent = '화면 켜짐 유지';
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
+// 타이머 (25분 카운트다운)
+let timerInterval = null;
+let timeLeft = 25 * 60; // 25분 (초 단위)
+let isRunning = false;
+
+function updateTimerDisplay() {
+  const m = Math.floor(timeLeft / 60);
+  const s = timeLeft % 60;
+  document.getElementById('timerDisplay').textContent = 
+    `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.6);
+  } catch (e) {}
+}
+
+function toggleTimer() {
+  const btn = document.getElementById('timerStartBtn');
+  if (isRunning) {
+    clearInterval(timerInterval);
+    isRunning = false;
+    btn.textContent = '계속 진행';
+  } else {
+    isRunning = true;
+    btn.textContent = '일시정지';
+    timerInterval = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateTimerDisplay();
+      } else {
+        clearInterval(timerInterval);
+        isRunning = false;
+        btn.textContent = '완료됨';
+        playBeep();
+        if ('vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+        alert('⏰ 25분 경과! 뚜껑을 열고 간을 맞출 시간입니다.');
+      }
+    }, 1000);
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  isRunning = false;
+  timeLeft = 25 * 60;
+  updateTimerDisplay();
+  document.getElementById('timerStartBtn').textContent = '타이머 시작';
+}
+
+// 단계 클릭 시 완료 토글
+document.querySelectorAll('.step-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    // 버튼이나 타이머 조작 시에는 단계 완료 토글 방지
+    if (e.target.closest('button')) return;
+    card.classList.toggle('done');
+  });
+});
+</script>
+
+</body>
+</html>
